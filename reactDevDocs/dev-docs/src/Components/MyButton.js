@@ -1,10 +1,9 @@
 import { useState } from 'react'
 
 function MyButton() {
-    const [count, setCount] = useState(1)
+    const [count, setCount] = useState(0)
     function handleClick(){
         setCount(count + 1)
-        alert(`You CLICKED me ${count} times!?! WHYYYY`)
     }
     return (
         <button onClick={handleClick}
@@ -12,7 +11,7 @@ function MyButton() {
                 'backgroundColor': 'blue',
                 'color':'white'
             }}
-        >I'm a button! Click me!</button>
+        >I'm a button! You've clicked me {count} times!</button>
     )
 }
 

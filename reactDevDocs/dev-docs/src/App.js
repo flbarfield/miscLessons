@@ -8,6 +8,7 @@ function App() {
       <h1>Welcome to my app!</h1>
       <AboutPage/>
       <MyButton/>
+      <MyButton/>
     </div>
   );
 }
