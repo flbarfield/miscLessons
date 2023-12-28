@@ -66,3 +66,29 @@ class LinkedList:
         prev.next = curNode.next
         # deletes node
         curNode = None
+    
+    def delete_node_pos(self, pos):
+        # checks if linked list is empty or not
+        if self.head:
+            curNode = self.head
+            if pos == 0:
+                # declares the next node the head, and then deletes itself with None
+                self.head = curNode.next
+                curNode = None
+                return
+            
+            prev = None
+            count = 0
+            # increments count until it equals pos
+            while curNode and count != pos:
+                prev = curNode
+                curNode = curNode.next
+                count += 1
+
+            # position was never found after traversing list
+            if curNode is None:
+                return
+            
+            # moves pointer from the prev node from the currently selected node, and  affixes it to the next node, before it finally deletes itself.
+            prev.next = curNode.next
+            curNode = None
