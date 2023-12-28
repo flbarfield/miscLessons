@@ -92,3 +92,47 @@ class LinkedList:
             # moves pointer from the prev node from the currently selected node, and  affixes it to the next node, before it finally deletes itself.
             prev.next = curNode.next
             curNode = None
+
+    def lenIterative(self):
+        count = 0
+        curNode = self.head
+        while curNode:
+            count += 1
+            curNode = curNode.next
+            return count
+        
+    def lenRecursive(self, node):
+        if node is None:
+            return 0
+        return 1 + self.lenRecursive(node.next)
+
+    def swapNodes(self, key1, key2):
+        if key1 == key2:
+            return
+        
+        prev1 = None
+        cur1 = self.head
+        while cur1 and curr1.data != key1:
+            prev1 = curr1
+            curr1 = curr1.next
+
+        prev2 = None
+        curr2 = self.head
+        while curr2 and curr2.data != key2:
+            prev2 = curr2
+            curr2 = curr2.next
+
+        if not curr1 or not curr2:
+            return
+        
+        if prev1:
+            prev1.next = curr2
+        else:
+            self.head = curr2
+
+        if prev2:
+            prev2.next = curr1
+        else:
+            self.head = curr1
+
+        curr1.next, curr2.next = curr2.next, curr1.next
