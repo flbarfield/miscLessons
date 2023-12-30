@@ -34,9 +34,9 @@ def latin_logic(words):
     for word in words.split():
         f_letter = word[0].lower()
         if word[1] in ['a', 'e', 'i', 'o', 'u']:
-            phrase += word[1:len(word)] + f_letter + 'way '
+            phrase += word[1:len(word)].lower() + f_letter + 'way '
         else:
-            phrase += word[1:len(word)] + f_letter + 'ay '
+            phrase += word[1:len(word)].lower() + f_letter + 'ay '
     print('\n' + phrase + '\n')
 
 def make_pig_latin ():
