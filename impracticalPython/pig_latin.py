@@ -26,6 +26,7 @@ Steps:
 * print(phrase)   
 
 '''
+import sys
 
 def latin_logic(words):
     '''Does the word conversion to pig latin'''
@@ -47,6 +48,6 @@ def make_pig_latin ():
     if choice == 'y'.lower():
         make_pig_latin()
     elif choice == 'n'.lower():
-        exit()
+        sys.exit()
 
 make_pig_latin()
