@@ -41,13 +41,17 @@ def latin_logic(words):
 
 def make_pig_latin ():
     '''Starting Function'''
+    state = True
     prompt_string = 'Please input the words you want translated. \n >>> '
     user_words = input(prompt_string)
     latin_logic(user_words)
-    choice = input('Would you like to enter another phrase?\n y for yes, n for no \n >>> ')
-    if choice == 'y'.lower():
-        make_pig_latin()
-    elif choice == 'n'.lower():
-        sys.exit()
+    while state is True:
+        choice = input('Would you like to enter another phrase?\n y for yes, n for no \n >>> ')
+        if choice == 'y'.lower():
+            make_pig_latin()
+        elif choice == 'n'.lower():
+            sys.exit()
+        else:
+            print('\n Invalid entry. \n')
 
 make_pig_latin()
