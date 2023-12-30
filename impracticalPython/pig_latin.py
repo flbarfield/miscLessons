@@ -33,7 +33,7 @@ def latin_logic(words):
     phrase = ''
     for word in words.split():
         f_letter = word[0].lower()
-        if word[1] in ['a', 'e', 'i', 'o', 'u']:
+        if word[1].lower() in ['a', 'e', 'i', 'o', 'u']:
             phrase += word[1:len(word)].lower() + f_letter + 'way '
         else:
             phrase += word[1:len(word)].lower() + f_letter + 'ay '
