@@ -32,8 +32,8 @@ def prompt_choice ():
 
 def generate_name (f_name_list, l_name_list):
     '''main function'''
-    f_name_index = int(random.random() * len(first_names))
-    l_name_index = int(random.random() * len(last_names))
+    f_name_index = int(random.random() * len(f_name_list))
+    l_name_index = int(random.random() * len(l_name_list))
 
     print(f'\n Your name is: {f_name_list[f_name_index]} {l_name_list[l_name_index]}\
            \n \n Would you like to generate another name?\n', file=sys.stderr)
