@@ -27,8 +27,8 @@ Steps:
 
 '''
 
-def make_pig_latin (words):
-    '''doing the thing'''
+def latin_logic(words):
+    '''Does the word conversion to pig latin'''
     phrase = ''
     for word in words.split():
         f_letter = word[0].lower()
@@ -36,6 +36,17 @@ def make_pig_latin (words):
             phrase += word[1:len(word)] + f_letter + 'way '
         else:
             phrase += word[1:len(word)] + f_letter + 'ay '
-    print(phrase)
+    print('\n' + phrase + '\n')
 
-make_pig_latin("Hey Im Bob")
+def make_pig_latin ():
+    '''Starting Function'''
+    prompt_string = 'Please input the words you want translated. \n >>> '
+    user_words = input(prompt_string)
+    latin_logic(user_words)
+    choice = input('Would you like to enter another name?\n y for yes, n for no \n >>> ')
+    if choice == 'y'.lower():
+        make_pig_latin()
+    elif choice == 'n'.lower():
+        exit()
+
+make_pig_latin()
