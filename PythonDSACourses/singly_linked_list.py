@@ -252,4 +252,87 @@ class LinkedList:
                 dup_values[cur.data] = 1
                 prev = cur
             cur = prev.next
-            
+
+    def print_nth_from_last(self, n, method):
+        '''Nth is is the inputted number from the last'''
+        # method #1
+        if method == 1:
+            total_len = self.len_iterative()
+
+            cur = self.head
+            while cur:
+                if total_len == n:
+                    print(cur.data)
+                    return cur.data
+                total_len -= 1
+                cur = cur.next
+            if cur is None:
+                return
+        # method #2
+        elif method == 2:
+            p = self.head
+            q = self.head
+
+            if n > 0:
+                count = 0
+                while q:
+                    count += 1
+                    if count >= n:
+                        break
+                    q = q.next
+
+                if not q:
+                    print(str(n) + ' is greater than the number of nodes in list.')
+                    return
+
+                while p and q.next:
+                    p = p.next
+                    q = q.next
+                return p.data
+            # unnecessary, but keeping in for learning purpose
+            # else:
+            #     return None
+
+    def count_occurances_iterative(self, data):
+        '''counts occurances of duplicate values'''
+        count = 0
+        cur = self.head
+        while cur:
+            if cur.data == data:
+                count += 1
+            cur = cur.next
+        return count
+
+    def count_occurences_recursive(self, node, data):
+        '''counts occurances of duplicates recursively'''
+        # wait, I think this is also unnecessary but I'll keep it in
+        if not node:
+            return 0
+        if node.data == data:
+            return 1 + self.count_occurences_recursive(node.next, data)
+        #unnessary, but keeping in for the learning process.
+        # else:
+        #     return self.count_occurences_recursive(node.next, data)
+
+    def rotate(self, k):
+        '''rotates list given an input of k'''
+        if self.head and self.head.next:
+            p = self.head
+            q = self.head
+            prev = None
+            count = 0
+
+            while p and count < k:
+                prev = p
+                p = p.next
+                q = q.next
+                count += 1
+            p = prev
+            while q:
+                prev = q
+                q = q.next
+            q = prev
+
+            q.next = self.head
+            self.head = p.next
+            p.next = None
