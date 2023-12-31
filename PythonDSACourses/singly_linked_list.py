@@ -184,3 +184,72 @@ class LinkedList:
             return _reverse_recursive(cur, prev)
 
         self.head = _reverse_recursive(cur=self.head, prev=None)
+
+    def merge_sorted(self, llist):
+        '''Merging 2 lists, sorted. Key here is having three
+            pointers: p, q, and s..."llist" represents the second linked 
+            list.
+
+            s will take the place of p or q depending on which list has
+            the lesser value, and then push p or q along their respective lists.
+        '''
+        p = self.head
+        q = llist.head
+        s = None
+
+        # this checks to make sure that neither list is empty.
+        if not p:
+            return q
+        if not q:
+            return p
+
+        # comparing data the nodes are pointing to, setting pointers between \
+        # the two lists if both lists have elements
+        if p and q:
+            if p.data <= q.data:
+                s = p
+                p = s.next
+            else:
+                s = q
+                q = s.next
+            new_head = s
+
+        # this runs the loop until q or p becomes none, and then continues
+        # down p or q adding futher pointers?
+        while p and q:
+            if p.data <= q.data:
+                s.next = p
+                s = p
+                p = s.next
+            else:
+                s.next = q
+                s = q
+                q = s.next
+        if not p:
+            s.next = q
+        if not q:
+            s.next = p
+
+        self.head = new_head
+        return self.head
+
+    def remove_duplicates(self):
+        '''loop through list once, keeping track of data held
+        at each of the nodes. A hash table (or Python dictionary)
+        is used to keep track of the encountered data elements.
+        '''
+        cur = self.head
+        prev = None
+        dup_values = {}
+
+        while cur:
+            if cur.data in dup_values:
+                # Remove Node:
+                prev.next = cur.next
+                cur = None
+            else:
+                # Have not encountered element before.
+                dup_values[cur.data] = 1
+                prev = cur
+            cur = prev.next
+            
