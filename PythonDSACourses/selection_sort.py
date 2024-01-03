@@ -5,16 +5,23 @@ def selection_sort(array):
     captured and then brought to the beginning for each
     loop iteration.
     '''
-    for index_a, item_a in enumerate(array):
-        lowest_number_index = index_a
 
-        for index_b, item_b in enumerate(array):
-            if array[index_b] < array[index_a]:
-                lowest_number_index = index_b
-            if lowest_number_index != index_a:
-                temp = array[index_a]
-                array[index_a] = array[lowest_number_index]
-                lowest_number_index = temp
+    # doesn't have to run loop for the final time, as list
+    # will be fully sorted by that point.
+    for i in range(len(array) - 1):
+        lowest_number_index = i
+
+        # checks remaining values that other than the currently selected
+        for j in range(i + 1, len(array)):
+            # selects the minimum element in every iteration
+            if array[j] < array[lowest_number_index]:
+                lowest_number_index = j
+
+            #swas the elements to sort the array
+            if lowest_number_index != i:
+                temp = array[i]
+                array[i] = array[lowest_number_index]
+                array[lowest_number_index] = temp
 
     return array
 
