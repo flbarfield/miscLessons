@@ -17,7 +17,7 @@ def selection_sort(array):
             if array[j] < array[lowest_number_index]:
                 lowest_number_index = j
 
-            #swas the elements to sort the array
+            #swaps the elements to sort the array
             if lowest_number_index != i:
                 temp = array[i]
                 array[i] = array[lowest_number_index]
