@@ -15,8 +15,11 @@ def fib (n, memo):
         return n
 
     # check the hash table (called memo) to see whether fib(n)
-    # was already computered or not:
-    memo[n] = fib(n - 2, memo) + fib(n - 1, memo)
+    # was already computed or not:
+    if not memo.get(n):
+        # if n is NOT in memo, compute fib(n) with recursion and then
+        # store the result into the hash table
+        memo[n] = fib(n - 2, memo) + fib(n - 1, memo)
 
     # By now, fib(n)'s result is certainly in memo. (Perhaps it was
     # there before, or perhaps we just stored it there in the previous
