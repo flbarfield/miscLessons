@@ -69,3 +69,8 @@ class SortableArray:
         # Recusively call this quicksort method on whatever is to the left
         # of the pivot
         self.quicksort(left_index, pivot_index - 1)
+
+input_array = [0, 5, 2, 1, 6, 3]
+new_array = SortableArray(input_array)
+new_array.quicksort(0, len(input_array) -1)
+print(new_array.array)
