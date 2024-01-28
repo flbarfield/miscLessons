@@ -70,7 +70,37 @@ class SortableArray:
         # of the pivot
         self.quicksort(left_index, pivot_index - 1)
 
+    def quickselect(self, kth_lowest_value, left_index, right_index):
+        '''Implementation of quickselect'''
+        # If we reach a base case - that is, if that subarray has one cell,
+        # we know we've found the value we're looking for:
+        if right_index - left_index <= 0:
+            return self.array[left_index]
+
+        # Partition the array and grab the index of the pivot:
+        pivot_index = self.partition(left_index, right_index)
+
+        # If what we're looking for is to the left of the pivot:
+        if kth_lowest_value < pivot_index:
+            # Recursively perform quickselect on the subarray to the left of
+            # the pivot:
+            self.quickselect(kth_lowest_value, left_index, pivot_index - 1)
+
+        elif kth_lowest_value > pivot_index:
+            # Recursively perform quickselect on the subarray to the right of
+            # the pivot:
+            self.quickselect(kth_lowest_value, pivot_index + 1, right_index)
+        else: # If kth_lowest_value == pivot_index...
+            # if after the partition, the pivot position is in the same spot
+            # as the kth lowest value, we've found the value we're looking for
+            return self.array[pivot_index]
+
 input_array = [0, 5, 2, 1, 6, 3]
 new_array = SortableArray(input_array)
-new_array.quicksort(0, len(input_array) -1)
-print(new_array.array)
+new_array.quicksort(0, len(input_array) - 1)
+print('quicksort result: ' + str(new_array.array))
+
+input_array2 = [0, 50, 20, 10, 60, 30]
+new_array2 = SortableArray(input_array2)
+new_array2.quickselect(1, 0, len(new_array2.array) - 1)
+print('quickselect result: ' + str(new_array2.array))
