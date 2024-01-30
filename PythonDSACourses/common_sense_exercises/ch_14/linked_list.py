@@ -29,6 +29,26 @@ class LinkedList:
         # value cannot be found in the list, so it returns none
         return current_node.data
 
+    def index_of(self, value):
+        '''given a value, will find the index of that value within
+        the linked list
+        '''
+        # We begin at the first node of the list:
+        current_node = self.first_node
+        current_index = 0
+
+        while current_node:
+            # If we find the data we're looking for, we return the index:
+            if current_node.data == value:
+                return current_index
+            # Otherwise, we move on to the next node:
+            current_node = current_node.next_node
+            current_index += 1
+            # If we get through the entire list without finding the data,
+            # we return None:
+        return None
+
+
 node1 = Node('Once')
 node2 = Node('upon')
 node3 = Node('a')
@@ -41,3 +61,4 @@ node3.next_node = node4
 input_list = LinkedList(node1)
 # print(input_list.first_node.data)
 print(input_list.read(3))
+print(input_list.index_of('time'))
