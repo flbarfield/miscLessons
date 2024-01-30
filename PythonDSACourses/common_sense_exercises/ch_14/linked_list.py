@@ -48,6 +48,35 @@ class LinkedList:
             # we return None:
         return None
 
+    def insert_at_index(self, index, value):
+        '''given an index, will insert the given value at that index'''
+
+        # We create the new node with the provided value:
+        new_node = Node(value)
+
+        # If starting at the begining of the list:
+        if index == 0:
+            # Have our new node link to what was the first node.
+            new_node.next_node = self.first_node
+            self.first_node = new_node
+            return
+
+        # If inserting anywhere other than the beginning:
+
+        current_node = self.first_node
+        current_index = 0
+
+        # First, we access the node immediately before the new node will
+        # go
+        while current_index < index - 1:
+            current_node = current_node.next_node
+            current_index += 1
+
+        # Have the new node link to the next node:
+        new_node.next_node = current_node.next_node
+
+        # Modify the link of the previous node to point to our new node.
+        current_node.next_node = new_node
 
 node1 = Node('Once')
 node2 = Node('upon')
@@ -62,3 +91,6 @@ input_list = LinkedList(node1)
 # print(input_list.first_node.data)
 print(input_list.read(3))
 print(input_list.index_of('time'))
+
+input_list.insert_at_index(3, 'purple')
+print(input_list.read(3))
