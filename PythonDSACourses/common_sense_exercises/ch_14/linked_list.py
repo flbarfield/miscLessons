@@ -103,6 +103,50 @@ class LinkedList:
         # out of the list:
         current_node.next_node = node_after_deleted_node
 
+    # Exercise #1:
+    def print_all(self):
+        '''prints all elements currently within the Linked List'''
+        current_node = self.first_node
+
+        while current_node:
+            print(current_node.data)
+            current_node = current_node.next_node
+
+    # Exercise #3:
+    def return_last(self):
+        '''returns the last element within the linked list.'''
+        current_node = self.first_node
+        item_count = 0
+
+        # obtains the number of items within linked list through
+        # first loop
+        while current_node:
+            item_count += 1
+            current_node = current_node.next_node
+
+        current_node = self.first_node
+        for i in range(item_count):
+            current_node = current_node.next_node
+            # The tail is going to be "None, and count stops at 4,
+            # so the last actual element will be -2"
+            if i == item_count - 2:
+                return current_node.data
+
+    # Exercise #4
+    def reverse_list(self):
+        '''returns the linked list in reversed order'''
+        current_node = self.first_node
+        previous_node = None
+
+        while current_node:
+            new_next = current_node.next_node
+            current_node.next_node = previous_node
+            previous_node = current_node
+            current_node = new_next
+        self.first_node = previous_node
+        self.print_all()
+
+
 
 node1 = Node('Once')
 node2 = Node('upon')
@@ -114,9 +158,13 @@ node2.next_node = node3
 node3.next_node = node4
 
 input_list = LinkedList(node1)
-# print(input_list.first_node.data)
-print(input_list.read(3))
-print(input_list.index_of('time'))
+# # print(input_list.first_node.data)
+# print(input_list.read(3))
+# print(input_list.index_of('time'))
 
-input_list.insert_at_index(3, 'purple')
-print(input_list.read(3))
+# input_list.insert_at_index(3, 'purple')
+# print(input_list.read(3))
+
+# input_list.print_all()
+# print(input_list.return_last())
+input_list.reverse_list()

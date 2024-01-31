@@ -38,6 +38,18 @@ class DoublyLinkedList:
         self.first_node = self.first_node.next_node
         return removed_node
 
+    # Exercise #2
+    def reverse_print(self):
+        '''prints in reverse all elements within linked list
+        '''
+        current_node = self.first_node
+
+        while current_node:
+            current_node = current_node.previous_node
+            print(current_node.data)
+            if current_node.data == self.first_node.data:
+                break
+
 class Queue:
     '''Implementation of a queue'''
     def __init__(self):
@@ -57,3 +69,21 @@ class Queue:
         nothing more to return'''
         while self.data.first_node:
             return self.data.first_node
+
+node1 = Node('once')
+node2 = Node('upon')
+node3 = Node('a')
+node4 = Node('time')
+
+node1.previous_node = node4
+node1.next_node = node2
+node2.previous_node = node1
+node2.next_node = node3
+node3.previous_node = node2
+node3.next_node = node4
+node4.previous_node = node3
+node4.next_node = node1
+
+input_list = DoublyLinkedList(node1, node4)
+
+input_list.reverse_print()
