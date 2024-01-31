@@ -78,6 +78,32 @@ class LinkedList:
         # Modify the link of the previous node to point to our new node.
         current_node.next_node = new_node
 
+    def delete_at_index(self, index):
+        '''given an input, will delete value at index'''
+        # If we're deleting the first node
+        if index == 0:
+            # Simply set the first node to be what is currently the
+            # second node
+            self.first_node = self.first_node.next_node
+
+        current_node = self.first_node
+        current_index = 0
+
+        # First, we find the node immediately before the one we want
+        # to delete and call it current node
+        while current_index < index - 1:
+            current_node = current_node.next_node
+            current_index += 1
+
+        # We Find the node that comes after the one we're deleting:
+        node_after_deleted_node = current_node.next_node
+
+        # We change the link of the current_node to point to the
+        # node_after_deleted_node, leave the node we want to delete
+        # out of the list:
+        current_node.next_node = node_after_deleted_node
+
+
 node1 = Node('Once')
 node2 = Node('upon')
 node3 = Node('a')
