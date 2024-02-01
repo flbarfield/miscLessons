@@ -146,6 +146,12 @@ class LinkedList:
         self.first_node = previous_node
         self.print_all()
 
+    def delete_middle_node(self, node):
+        '''Given the name of an node, node will be deleted
+        '''
+        node.data = node.next_node.data
+        node.next_node = node.next_node.next_node
+
 
 
 node1 = Node('Once')
