@@ -22,6 +22,25 @@ class TreeNode:
         # search on the right child...search_value > node.value
         return self.search(search_value, node.right_child)
 
+    def insert(self, value, node):
+        '''implementation of insert'''
+        if value < node.value:
+
+        # If the left child does not exist, we want to insert the
+        # value as the left child: 
+            if node.left_child is None:
+                node.left_child = TreeNode(value)
+            else:
+                self.insert(value, node.left_child)
+        elif value > node.value:
+
+            # If the right child does not exist, we want to insert
+            # the value as the right child:
+            if node.right_child is None:
+                node.right_child = TreeNode(value)
+            else:
+                self.insert(value, node.right_child)
+
 # Building the tree's structure
 node1 = TreeNode(25)
 node2 = TreeNode(75)
