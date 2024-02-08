@@ -42,7 +42,24 @@ class TreeNode:
                 self.insert(value, node.right_child)
 
     def lift(self, node, node_to_delete):
-        '''implementation of lift'''
+        '''lift is implemented more for the purpose of the delete method.
+        It accomplishes 4 things. 
+
+        1) It finds the successor node.
+
+        2) It overwrites the value of node_to_delete and makes it the value
+        of the successor node. This is how we get the successor node into the 
+        correct spot. Note that we don't move the actual successor node object
+        anywhere; we simply copy its value into the node we're deleting.
+
+        3) To eliminate the original successor node object, the function then turns
+        the original successor node's right child into it's parents left child.
+
+        4) After all the recursion is said and done, it finally returns either the
+        original right_child passed into it in the first place, or None if the original
+        right_child ended up serving as a successor node (which would happen if it
+        had no left children of its own).
+        '''
         # If the current node of this function has a left child, we recursively
         # call this function to continue down the left subtree to find the
         # successor node.
