@@ -118,6 +118,14 @@ class TreeNode:
                 node.right_child = self.lift(node.right_child, node)
                 return node
 
+    def traverse_and_print(self, node):
+        '''Implementation of traverse and print'''
+        if node is None:
+            return
+        self.traverse_and_print(node.left_child)
+        print(node.value)
+        self.traverse_and_print(node.right_child)
+
 # Building the tree's structure
 node1 = TreeNode(25)
 node2 = TreeNode(75)
