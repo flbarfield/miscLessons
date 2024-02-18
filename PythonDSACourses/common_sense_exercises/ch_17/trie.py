@@ -27,3 +27,54 @@ class Trie:
                 return None
 
         return current_node
+
+    def insert(self, word):
+        '''Implementation of an insert method'''
+        current_node = self.root
+
+        for char in word:
+            # If the current node has a child key with current char:
+            if current_node.children.get(char):
+                # Follow the child node:
+                current_node = current_node.children[char]
+            else:
+                # IF the current char isn't found among the current
+                # node's children, we add the chracter as a new child
+                # node:
+                new_node = TrieNode()
+                current_node.children[char] = new_node
+
+                # Follow this new node:
+                current_node = new_node
+
+            # After inserting the entire word into the trie, we add
+            # a * key at the end:
+
+            current_node.children['*'] = None
+
+    def collect_all_words(self, node=None, word='', words=None):
+        '''autocomplete feature'''
+        if words is None:
+            words = []
+        # This method accepts 3 aruguments. The first is the node
+        # whose descendants we're collecting words from. The 
+        # second argument, word, begins as an empty string, and
+        # we add characters to it as we move through the trie.
+        # The third argument, words, begings as an empty array,
+        # and by the end of the function will contain all the words
+        # from the trie.
+        # The current node is the node passed in as the first
+        # parameter, or the root node if none is provided.
+        current_node = node or self.root
+
+        # We iterate through all the current node's children:
+        for key, child_node in current_node.children.items():
+            # If the current key is *, it means we hit the end of a
+            # complete word, so we can add it to our words array:
+            if key == '*':
+                words.append(word)
+            else: # If we're still in the middle of a word:
+                # We recursively call this function on the child node.
+                self.collect_all_words(child_node, word + key, words)
+
+        return words
