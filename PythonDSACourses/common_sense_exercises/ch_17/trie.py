@@ -53,11 +53,11 @@ class Trie:
             current_node.children['*'] = None
 
     def collect_all_words(self, node=None, word='', words=None):
-        '''autocomplete feature'''
+        '''necessary for autocomplete feature'''
         if words is None:
             words = []
         # This method accepts 3 aruguments. The first is the node
-        # whose descendants we're collecting words from. The 
+        # whose descendants we're collecting words from. The
         # second argument, word, begins as an empty string, and
         # we add characters to it as we move through the trie.
         # The third argument, words, begings as an empty array,
@@ -78,3 +78,12 @@ class Trie:
                 self.collect_all_words(child_node, word + key, words)
 
         return words
+
+    def auto_complete(self, prefix):
+        '''implementation of autocomplete. Prefix is the string of chars
+        the user begins to type in
+        '''
+        current_node = self.search(prefix)
+        if not current_node:
+            return None
+        return self.collect_all_words(current_node)
