@@ -68,8 +68,9 @@ class Vertex:
 
             # Attempt to find the vertex we're searching for by
             # recursively calling this method on adjacent vertex:
-            vertex_were_searching_for = self.dfs(adjacent_vertex, search_value, \
-                                                visted_vertices)
+            vertex_were_searching_for = \
+                self.dfs(adjacent_vertex, search_value, \
+                        visted_vertices)
 
             # if we were able to find the correct vertex using the
             # above recursion, return the currect vertex:
