@@ -20,7 +20,7 @@ class Vertex:
         self.adjacent_vertices.append(vertex)
 
     def dfs_traverse(self, vertex, visted_vertices=None):
-        '''Implementation of dfs tarverse, not fully understanding
+        '''Implementation of dfs traverse, not fully understanding
           the ruby syntax however in my translation attempt, so the 
           code may not be fucntional until a revist. The pseudo code 
           is probably what's important.
@@ -76,6 +76,38 @@ class Vertex:
             # above recursion, return the currect vertex:
             if vertex_were_searching_for:
                 return vertex_were_searching_for
+
+    def bfs_traverse(self, starting_vertex):
+        '''breadth-first search'''
+        queue = []
+        visited_vertices = {}
+
+        visited_vertices[starting_vertex.value] = True
+        queue.append(starting_vertex)
+
+        # While the queue is not empty:
+        while queue:
+
+            # Remove the first vertex off the queue and make it
+            # the current vertex:
+            current_vertex = queue.pop(1)
+
+            # Print the current vertex's value:
+            print(current_vertex.value)
+
+            # Iterate over current vertex's adjacent vvertices:
+            for adjacent_vertex in self.adjacent_vertices[current_vertex]:
+
+                # If we have not yet visited the adjacent vertex:
+                if not visited_vertices[adjacent_vertex.value]:
+
+                    # Mark the adjacent vertex as visited:
+                    visited_vertices[adjacent_vertex.value] = True
+
+                    # Add the adjacent vertex to the queue:
+                    queue.append(adjacent_vertex)
+
+
 
 alice = Vertex('alice')
 alice = Vertex('alice')
