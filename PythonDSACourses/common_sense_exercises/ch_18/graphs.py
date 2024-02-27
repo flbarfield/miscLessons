@@ -107,6 +107,19 @@ class Vertex:
                     # Add the adjacent vertex to the queue:
                     queue.append(adjacent_vertex)
 
+class WeightedGraphVertex:
+    '''Note that this uses a hash table rather than an array
+    for adjacent verticies. The adjacent vertex is the key and 
+    the weight (of the edge from this vertex to the adjacent vertex)
+    is the value 
+    '''
+    def __init__(self, value):
+        self.value = value
+        self.adjacent_verticies = {}
+
+    def add_adjacent_vertex(self, vertex, weight):
+        '''implementation of adding adjacent vertexes'''
+        self.adjacent_verticies[vertex] = weight
 
 
 alice = Vertex('alice')
@@ -118,3 +131,9 @@ alice.add_adjacent_vertex('bob')
 alice.add_adjacent_vertex('cynthia')
 bob.add_adjacent_vertex('cynthia')
 cynthia.add_adjacent_vertex('bob')
+
+dallas = WeightedGraphVertex('Dallas')
+toronto = WeightedGraphVertex('Toronto')
+
+dallas.add_adjacent_vertex(toronto, 138)
+toronto.add_adjacent_vertex(dallas, 216)
