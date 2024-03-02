@@ -121,6 +121,18 @@ class WeightedGraphVertex:
         '''implementation of adding adjacent vertexes'''
         self.adjacent_verticies[vertex] = weight
 
+# For dijkstra's algorithm below
+class City:
+    '''implementation of a city'''
+    def __init__(self, name):
+        self.name = name
+        self.routes = {}
+
+    def add_route(self, city, price):
+        '''implementation of adding a route'''
+        self.routes[city] = price
+
+
 
 alice = Vertex('alice')
 alice = Vertex('alice')
